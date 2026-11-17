@@ -1,5 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arial:wght@400;700&display=swap');
 
 * {
     margin: 0;
@@ -8,188 +7,155 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f4f6fa;
-    color: #202b46;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffffff;
+    color: #111;
+    padding: 20px;
 }
-
-/* CABEÇALHO */
 
 .cabecalho {
-    background-color: #202b46;
-    color: white;
-    padding: 45px 20px;
     text-align: center;
-    border-bottom: 5px solid #f50057;
-}
-
-.conteudo-cabecalho {
-    max-width: 1100px;
-    margin: auto;
+    margin-bottom: 25px;
 }
 
 .categoria {
-    color: #ff5c95;
     font-size: 14px;
     font-weight: bold;
+    margin-bottom: 8px;
+    color: #444;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 12px;
 }
 
 .cabecalho h1 {
-    font-size: 36px;
-    margin-bottom: 15px;
+    font-size: 28px;
+    margin-bottom: 10px;
 }
 
 .cabecalho p {
     font-size: 16px;
+    color: #444;
 }
-
-/* CONTEÚDO PRINCIPAL */
 
 .container {
-    max-width: 1250px;
-    margin: 40px auto;
-    padding: 0 20px;
+    max-width: 1200px;
+    margin: auto;
 }
 
-/* INSTRUÇÕES */
-
 .instrucoes {
-    background-color: white;
-    border: 1px solid #dce3ef;
-    border-left: 5px solid #0863cf;
-    border-radius: 10px;
-    padding: 25px;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
+    padding: 15px;
+    border: 1px solid #cfcfcf;
+    background-color: #f8f8f8;
 }
 
 .instrucoes h2 {
-    margin-bottom: 12px;
-    font-size: 23px;
+    font-size: 22px;
+    margin-bottom: 10px;
 }
 
 .instrucoes p {
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.5;
 }
-
-/* ÁREA DO JOGO */
 
 .area-jogo {
     display: grid;
-    grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+    grid-template-columns: 2fr 1fr;
     gap: 25px;
     align-items: start;
 }
 
-/* PAINÉIS */
-
 .painel-tabuleiro,
 .painel-pistas {
-    background-color: white;
-    padding: 25px;
-    border-radius: 12px;
-    border: 1px solid #dce3ef;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #cfcfcf;
+    padding: 20px;
+    background-color: #fff;
 }
 
-.titulo-secao h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
+.titulo-secao h2,
+.painel-pistas h2 {
+    font-size: 22px;
+    margin-bottom: 8px;
 }
 
 .titulo-secao p {
+    margin-bottom: 18px;
+    color: #555;
     font-size: 14px;
-    color: #6d7387;
-    margin-bottom: 25px;
+}
+
+.rolagem-tabuleiro {
+    overflow-x: auto;
+    padding-bottom: 10px;
 }
 
 /* TABULEIRO */
-
-.rolagem-tabuleiro {
-    width: 100%;
-    overflow-x: auto;
-    padding-bottom: 15px;
-}
-
 .tabuleiro {
     display: grid;
-    grid-template-columns: repeat(20, 34px);
-    grid-template-rows: repeat(10, 34px);
-    gap: 2px;
+    grid-template-columns: repeat(20, 32px);
+    grid-template-rows: repeat(10, 32px);
+    gap: 0;
     width: max-content;
     margin: auto;
+    border: 1px solid #8f8f8f;
+    background-color: #fff;
 }
 
-/* CASAS */
-
+/* CADA CASA */
 .casa {
     position: relative;
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
 }
 
 .casa input {
     width: 100%;
     height: 100%;
-    border: 1px solid #9baecc;
-    border-radius: 3px;
-    background-color: #eaf1fc;
+    border: 1px solid #8f8f8f;
+    border-right: none;
+    border-bottom: none;
+    border-radius: 0;
+    background-color: #ffffff;
     text-align: center;
-    font-size: 19px;
+    font-size: 20px;
     font-weight: bold;
-    color: #202b46;
+    color: #111;
     text-transform: uppercase;
     outline: none;
     padding: 0;
 }
 
-.casa input:hover {
-    background-color: #d9e8ff;
-    border-color: #0863cf;
-}
-
+/* fecha a borda da última coluna e da última linha visualmente */
 .casa input:focus {
-    background-color: #ffffff;
-    border: 2px solid #0863cf;
-    box-shadow: 0 0 5px rgba(8, 99, 207, 0.4);
+    background-color: #f0f0f0;
 }
 
-/* NÚMEROS DAS CASAS */
-
+/* NÚMERO PEQUENO NO CANTO */
 .numero {
     position: absolute;
     top: 1px;
     left: 3px;
     font-size: 9px;
     font-weight: bold;
-    color: #0863cf;
-    z-index: 1;
+    color: #555;
+    z-index: 2;
     pointer-events: none;
 }
 
-/* RESULTADO DAS RESPOSTAS */
-
+/* CORES DE CONFERÊNCIA */
 .casa.correta input {
-    background-color: #d6f5df;
-    border-color: #26a65b;
-    color: #176b39;
+    background-color: #dff0d8;
 }
 
 .casa.incorreta input {
-    background-color: #ffe0e6;
-    border-color: #e53957;
-    color: #a71935;
+    background-color: #f2dede;
 }
 
-/* BOTÕES E CONTADOR */
-
+/* AÇÕES */
 .painel-acoes {
-    margin-top: 25px;
-    padding-top: 20px;
-    border-top: 1px solid #dce3ef;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #cfcfcf;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -200,7 +166,6 @@ body {
 #contador {
     font-size: 17px;
     font-weight: bold;
-    color: #0863cf;
 }
 
 .botoes {
@@ -209,102 +174,74 @@ body {
 }
 
 button {
-    background-color: #0863cf;
-    border: none;
-    color: white;
-    padding: 12px 22px;
-    border-radius: 6px;
+    padding: 10px 18px;
+    border: 1px solid #999;
+    background-color: #efefef;
+    color: #111;
     font-size: 15px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
 }
 
 button:hover {
-    background-color: #054b9d;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    background-color: #dddddd;
 }
 
 button.secundario {
-    background-color: #f50057;
+    background-color: #f7f7f7;
 }
 
 button.secundario:hover {
-    background-color: #be0043;
+    background-color: #e7e7e7;
 }
-
-/* MENSAGENS */
 
 #mensagem {
-    margin-top: 18px;
+    margin-top: 15px;
     font-size: 15px;
-    font-weight: 500;
-    text-align: center;
-}
-
-/* PAINEL DE PISTAS */
-
-.painel-pistas h2 {
-    font-size: 24px;
-    margin-bottom: 25px;
-}
-
-.grupo-pistas {
-    margin-bottom: 30px;
-}
-
-.grupo-pistas h3 {
-    font-size: 19px;
-    color: #0863cf;
-    padding-bottom: 10px;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #e7edf7;
-}
-
-.lista-pistas {
-    padding-left: 25px;
-}
-
-.lista-pistas li {
-    font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 18px;
-    padding-left: 5px;
-}
-
-.lista-pistas li::marker {
-    color: #f50057;
     font-weight: bold;
 }
 
-/* RESPONSIVIDADE */
+/* PISTAS */
+.grupo-pistas {
+    margin-bottom: 25px;
+}
 
-@media (max-width: 1050px) {
+.grupo-pistas h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #cfcfcf;
+    padding-bottom: 6px;
+}
 
+.lista-pistas {
+    padding-left: 22px;
+}
+
+.lista-pistas li {
+    margin-bottom: 14px;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+/* RESPONSIVO */
+@media (max-width: 950px) {
     .area-jogo {
         grid-template-columns: 1fr;
-    }
-
-    .painel-tabuleiro,
-    .painel-pistas {
-        width: 100%;
     }
 }
 
 @media (max-width: 600px) {
-
-    .cabecalho h1 {
-        font-size: 27px;
+    body {
+        padding: 10px;
     }
 
-    .container {
-        margin-top: 20px;
-        padding: 0 12px;
+    .cabecalho h1 {
+        font-size: 22px;
     }
 
     .painel-tabuleiro,
-    .painel-pistas {
+    .painel-pistas,
+    .instrucoes {
         padding: 15px;
     }
 
@@ -319,9 +256,5 @@ button.secundario:hover {
 
     button {
         width: 100%;
-    }
-
-    #contador {
-        text-align: center;
     }
 }
