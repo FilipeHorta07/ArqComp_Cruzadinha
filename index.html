@@ -6,17 +6,275 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cruzadinha de Arquitetura Computacional</title>
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #222;
+        }
+
+        header {
+            background-color: white;
+            text-align: center;
+            padding: 30px;
+            border-bottom: 3px solid #222;
+        }
+
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #555;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .instrucoes {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .instrucoes h2 {
+            margin-bottom: 10px;
+        }
+
+        .area-jogo {
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
+        }
+
+        .painel-tabuleiro {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 25px;
+            flex: 2;
+            min-width: 0;
+        }
+
+        .painel-pistas {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 25px;
+            flex: 1;
+        }
+
+        .painel-tabuleiro h2,
+        .painel-pistas h2 {
+            margin-bottom: 12px;
+        }
+
+        .rolagem-tabuleiro {
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .tabuleiro {
+            display: grid;
+            grid-template-columns: repeat(13, 38px);
+            grid-template-rows: repeat(10, 38px);
+            width: max-content;
+            margin: 25px auto;
+            border: 1px solid #888;
+        }
+
+        .casa,
+        .vazia {
+            width: 38px;
+            height: 38px;
+            position: relative;
+            border: 1px solid #aaa;
+        }
+
+        .casa {
+            background-color: white;
+        }
+
+        .vazia {
+            background-color: #e8e8e8;
+        }
+
+        .casa input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            text-align: center;
+            font-size: 19px;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 0;
+        }
+
+        .casa input:focus {
+            background-color: #dcecff;
+        }
+
+        .casa.selecionada {
+            background-color: #e8f1ff;
+        }
+
+        .numero {
+            position: absolute;
+            top: 1px;
+            left: 2px;
+            font-size: 9px;
+            font-weight: bold;
+            pointer-events: none;
+        }
+
+        .casa.correta {
+            background-color: #c8f0d0;
+        }
+
+        .casa.incorreta {
+            background-color: #ffcdd2;
+        }
+
+        .painel-acoes {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #ccc;
+        }
+
+        #contador {
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        .botoes {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            background-color: #eee;
+            color: #222;
+            border: 1px solid #999;
+            padding: 12px 20px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+        #mensagem {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .grupo-pistas {
+            margin-top: 25px;
+        }
+
+        .grupo-pistas h3 {
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .lista-pistas {
+            padding-left: 25px;
+        }
+
+        .lista-pistas li {
+            margin-bottom: 15px;
+            line-height: 1.5;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .lista-pistas li:hover {
+            text-decoration: underline;
+        }
+
+        .pista-selecionada {
+            background-color: #e8f1ff;
+        }
+
+        .pista-correta {
+            color: green;
+        }
+
+        .pista-correta::after {
+            content: " ✓ Correta";
+            font-weight: bold;
+        }
+
+        .pista-incorreta {
+            color: red;
+        }
+
+        .pista-incorreta::after {
+            content: " ✗ Incorreta";
+            font-weight: bold;
+        }
+
+        @media (max-width: 950px) {
+            .area-jogo {
+                flex-direction: column;
+            }
+
+            .painel-tabuleiro,
+            .painel-pistas {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .painel-tabuleiro,
+            .painel-pistas {
+                padding: 15px;
+            }
+
+            .painel-acoes {
+                flex-direction: column;
+            }
+
+            .botoes {
+                width: 100%;
+            }
+
+            button {
+                flex: 1;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <header class="cabecalho">
-        <div class="conteudo-cabecalho">
-            <p class="categoria">Arquitetura Computacional</p>
-            <h1>Cruzadinha da CPU</h1>
-            <p>Teste seus conhecimentos sobre os componentes de um computador.</p>
-        </div>
+    <header>
+        <h1>Cruzadinha de Arquitetura Computacional</h1>
+        <p>Teste seus conhecimentos sobre os componentes de um computador.</p>
     </header>
 
     <main class="container">
@@ -24,9 +282,10 @@
         <section class="instrucoes">
             <h2>Como jogar</h2>
             <p>
-                Leia as pistas e descubra as palavras.
-                Digite uma letra em cada casa e clique em Conferir
-                para verificar suas respostas.
+                Leia as pistas horizontais e verticais.
+                Clique na pista ou na primeira casa da palavra e digite as letras.
+                O cursor avança automaticamente.
+                Clique em Conferir para verificar suas respostas.
             </p>
         </section>
 
@@ -34,255 +293,11 @@
 
             <div class="painel-tabuleiro">
 
-                <div class="titulo-secao">
-                    <h2>Tabuleiro</h2>
-                    <p>Preencha as casas para completar a cruzadinha.</p>
-                </div>
+                <h2>Tabuleiro</h2>
+                <p>As casas numeradas indicam o início das palavras.</p>
 
                 <div class="rolagem-tabuleiro">
-
-                    <div class="tabuleiro">
-
-                        <!-- LINHA 1 -->
-
-                        <div class="casa" style="grid-row: 1; grid-column: 14;">
-                            <span class="numero">1</span>
-                            <input id="casa-1-14" maxlength="1">
-                        </div>
-
-                        <!-- LINHA 2 -->
-
-                        <div class="casa" style="grid-row: 2; grid-column: 3;">
-                            <span class="numero">2</span>
-                            <input id="casa-2-3" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 2; grid-column: 14;">
-                            <input id="casa-2-14" maxlength="1">
-                        </div>
-
-                        <!-- LINHA 3 -->
-
-                        <div class="casa" style="grid-row: 3; grid-column: 3;">
-                            <input id="casa-3-3" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 3; grid-column: 6;">
-                            <span class="numero">3</span>
-                            <input id="casa-3-6" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 3; grid-column: 9;">
-                            <span class="numero">4</span>
-                            <input id="casa-3-9" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 3; grid-column: 12;">
-                            <span class="numero">5</span>
-                            <input id="casa-3-12" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 3; grid-column: 14;">
-                            <input id="casa-3-14" maxlength="1">
-                        </div>
-
-                        <!-- LINHA 4 -->
-
-                        <div class="casa" style="grid-row: 4; grid-column: 2;">
-                            <span class="numero">6</span>
-                            <input id="casa-4-2" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 4; grid-column: 3;">
-                            <input id="casa-4-3" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 4; grid-column: 6;">
-                            <input id="casa-4-6" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 4; grid-column: 8;">
-                            <span class="numero">7</span>
-                            <input id="casa-4-8" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 4; grid-column: 9;">
-                            <input id="casa-4-9" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 4; grid-column: 10;">
-                            <input id="casa-4-10" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 4; grid-column: 12;">
-                            <input id="casa-4-12" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 4; grid-column: 14;">
-                            <input id="casa-4-14" maxlength="1">
-                        </div>
-
-                        <!-- LINHA 5 -->
-
-                        <div class="casa" style="grid-row: 5; grid-column: 3;">
-                            <input id="casa-5-3" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 5; grid-column: 6;">
-                            <input id="casa-5-6" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 5; grid-column: 9;">
-                            <input id="casa-5-9" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 5; grid-column: 12;">
-                            <input id="casa-5-12" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 5; grid-column: 14;">
-                            <input id="casa-5-14" maxlength="1">
-                        </div>
-
-                        <!-- LINHA 6 -->
-
-                        <div class="casa" style="grid-row: 6; grid-column: 2;">
-                            <span class="numero">8</span>
-                            <input id="casa-6-2" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 6; grid-column: 3;">
-                            <input id="casa-6-3" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 6; grid-column: 4;">
-                            <input id="casa-6-4" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 6; grid-column: 5;">
-                            <input id="casa-6-5" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 6; grid-column: 6;">
-                            <input id="casa-6-6" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 6; grid-column: 7;">
-                            <input id="casa-6-7" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 6; grid-column: 8;">
-                            <input id="casa-6-8" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 6; grid-column: 9;">
-                            <input id="casa-6-9" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 6; grid-column: 10;">
-                            <input id="casa-6-10" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 6; grid-column: 11;">
-                            <input id="casa-6-11" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 6; grid-column: 12;">
-                            <input id="casa-6-12" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 6; grid-column: 13;">
-                            <input id="casa-6-13" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 6; grid-column: 14;">
-                            <input id="casa-6-14" maxlength="1">
-                        </div>
-
-                        <!-- LINHA 7 -->
-
-                        <div class="casa" style="grid-row: 7; grid-column: 2;">
-                            <input id="casa-7-2" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 7; grid-column: 6;">
-                            <input id="casa-7-6" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 7; grid-column: 9;">
-                            <input id="casa-7-9" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 7; grid-column: 12;">
-                            <input id="casa-7-12" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 7; grid-column: 14;">
-                            <input id="casa-7-14" maxlength="1">
-                        </div>
-
-                        <!-- LINHA 8 -->
-
-                        <div class="casa" style="grid-row: 8; grid-column: 1;">
-                            <span class="numero">9</span>
-                            <input id="casa-8-1" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 8; grid-column: 2;">
-                            <input id="casa-8-2" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 8; grid-column: 3;">
-                            <input id="casa-8-3" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 8; grid-column: 7;">
-                            <span class="numero">10</span>
-                            <input id="casa-8-7" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 8; grid-column: 8;">
-                            <input id="casa-8-8" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 8; grid-column: 9;">
-                            <input id="casa-8-9" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 8; grid-column: 12;">
-                            <input id="casa-8-12" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 8; grid-column: 14;">
-                            <input id="casa-8-14" maxlength="1">
-                        </div>
-
-                        <!-- LINHA 9 -->
-
-                        <div class="casa" style="grid-row: 9; grid-column: 9;">
-                            <input id="casa-9-9" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 9; grid-column: 14;">
-                            <span class="numero">11</span>
-                            <input id="casa-9-14" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 9; grid-column: 15;">
-                            <input id="casa-9-15" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 9; grid-column: 16;">
-                            <input id="casa-9-16" maxlength="1">
-                        </div>
-
-                        <!-- LINHA 10 -->
-
-                        <div class="casa" style="grid-row: 10; grid-column: 14;">
-                            <input id="casa-10-14" maxlength="1">
-                        </div>
-
-                    </div>
+                    <div class="tabuleiro" id="tabuleiro"></div>
                 </div>
 
                 <div class="painel-acoes">
@@ -290,8 +305,8 @@
                     <p id="contador">Acertos: 0 de 12 palavras</p>
 
                     <div class="botoes">
-                        <button id="btnConferir">Conferir</button>
-                        <button id="btnReiniciar" class="secundario">Reiniciar</button>
+                        <button onclick="conferir()">Conferir</button>
+                        <button onclick="reiniciar()">Reiniciar</button>
                     </div>
 
                 </div>
@@ -299,8 +314,6 @@
                 <p id="mensagem"></p>
 
             </div>
-
-            <!-- PISTAS -->
 
             <div class="painel-pistas">
 
@@ -312,28 +325,28 @@
 
                     <ol class="lista-pistas">
 
-                        <li value="6">
-                            Parte do processador que interpreta instruções e emite comandos.
+                        <li value="4" id="pista-horizontal-4">
+                            Recurso que transfere dados entre dispositivos e memória sem ocupar o processador a cada byte.
                         </li>
 
-                        <li value="7">
-                            Memória volátil onde ficam variáveis e programas em execução.
+                        <li value="5" id="pista-horizontal-5">
+                            Pequenas memórias internas que armazenam valores temporários durante a execução das instruções.
                         </li>
 
-                        <li value="8">
-                            Pequenas memórias internas do processador que guardam valores usados no momento.
+                        <li value="7" id="pista-horizontal-7">
+                            Memória volátil usada para armazenar programas em execução e suas variáveis.
                         </li>
 
-                        <li value="9">
-                            Recurso que transfere informações entre dispositivos e memória sem copiar cada byte pela CPU.
+                        <li value="8" id="pista-horizontal-8">
+                            Memória rápida que guarda cópias de dados recentemente utilizados pelo processador.
                         </li>
 
-                        <li value="10">
-                            Componente que busca e executa as instruções de um programa.
+                        <li value="10" id="pista-horizontal-10">
+                            Parte do processador que realiza cálculos e operações lógicas.
                         </li>
 
-                        <li value="11">
-                            Parte do processador responsável pelas contas e operações lógicas.
+                        <li value="11" id="pista-horizontal-11">
+                            Componente responsável por buscar e executar as instruções de um programa.
                         </li>
 
                     </ol>
@@ -346,28 +359,28 @@
 
                     <ol class="lista-pistas">
 
-                        <li value="1">
-                            Conjunto de linhas que indica qual posição da memória será acessada.
+                        <li value="1" id="pista-vertical-1">
+                            Conjunto de linhas que identifica a posição de memória desejada pelo processador.
                         </li>
 
-                        <li value="2">
-                            Memória pequena e rápida que guarda cópias de informações utilizadas recentemente.
+                        <li value="2" id="pista-vertical-2">
+                            Memória não volátil que preserva configurações e permite regravações no microcontrolador.
                         </li>
 
-                        <li value="3">
-                            Tecnologia não volátil e regravável usada para guardar programas no Arduino.
+                        <li value="3" id="pista-vertical-3">
+                            Tecnologia de armazenamento regravável que mantém programas mesmo sem energia.
                         </li>
 
-                        <li value="4">
-                            Conjunto de linhas que transporta valores entre processador, memória e periféricos.
+                        <li value="6" id="pista-vertical-6">
+                            Conjunto de linhas que transporta valores e instruções entre os componentes.
                         </li>
 
-                        <li value="5">
-                            Memória regravável que preserva pequenas configurações mesmo após desligar o dispositivo.
+                        <li value="7" id="pista-vertical-7">
+                            Memória não volátil tradicionalmente destinada a informações de inicialização do equipamento.
                         </li>
 
-                        <li value="8">
-                            Tipo de memória não volátil tradicionalmente associada a instruções de inicialização.
+                        <li value="9" id="pista-vertical-9">
+                            Parte do processador que interpreta as instruções e coordena as operações.
                         </li>
 
                     </ol>
@@ -380,136 +393,472 @@
 
     </main>
 
-</body>
+    <script>
 
-</html>
-<script>
+        let palavras = [
+            { numero: 1, tipo: "vertical", resposta: "ADDRESSBUS", linha: 1, coluna: 1 },
+            { numero: 2, tipo: "vertical", resposta: "EEPROM", linha: 1, coluna: 7 },
+            { numero: 3, tipo: "vertical", resposta: "FLASH", linha: 1, coluna: 13 },
+            { numero: 4, tipo: "horizontal", resposta: "DMA", linha: 2, coluna: 1 },
+            { numero: 5, tipo: "horizontal", resposta: "REGISTRADORES", linha: 4, coluna: 1 },
+            { numero: 6, tipo: "vertical", resposta: "DATABUS", linha: 4, coluna: 9 },
+            { numero: 7, tipo: "horizontal", resposta: "RAM", linha: 6, coluna: 5 },
+            { numero: 7, tipo: "vertical", resposta: "ROM", linha: 6, coluna: 5 },
+            { numero: 8, tipo: "horizontal", resposta: "CACHE", linha: 7, coluna: 8 },
+            { numero: 9, tipo: "vertical", resposta: "UC", linha: 8, coluna: 7 },
+            { numero: 10, tipo: "horizontal", resposta: "ULA", linha: 9, coluna: 1 },
+            { numero: 11, tipo: "horizontal", resposta: "CPU", linha: 9, coluna: 7 }
+        ];
 
+        let casas = {};
+        let palavraAtiva = null;
 
-let palavras = [
-    { numero: 6, tipo: "horizontal", resposta: "UC", linha: 4, coluna: 2 },
-    { numero: 7, tipo: "horizontal", resposta: "RAM", linha: 4, coluna: 8 },
-    { numero: 8, tipo: "horizontal", resposta: "REGISTRADORES", linha: 6, coluna: 2 },
-    { numero: 9, tipo: "horizontal", resposta: "DMA", linha: 8, coluna: 1 },
-    { numero: 10, tipo: "horizontal", resposta: "CPU", linha: 8, coluna: 7 },
-    { numero: 11, tipo: "horizontal", resposta: "ULA", linha: 9, coluna: 14 },
+        // MONTAR AS POSIÇÕES DAS PALAVRAS
 
-    { numero: 1, tipo: "vertical", resposta: "ADDRESSBUS", linha: 1, coluna: 14 },
-    { numero: 2, tipo: "vertical", resposta: "CACHE", linha: 2, coluna: 3 },
-    { numero: 3, tipo: "vertical", resposta: "FLASH", linha: 3, coluna: 6 },
-    { numero: 4, tipo: "vertical", resposta: "DATABUS", linha: 3, coluna: 9 },
-    { numero: 5, tipo: "vertical", resposta: "EEPROM", linha: 3, coluna: 12 },
-    { numero: 8, tipo: "vertical", resposta: "ROM", linha: 6, coluna: 2 }
-];
+        for (let i = 0; i < palavras.length; i++) {
 
-function conferir() {
+            let palavra = palavras[i];
 
-    let acertos = 0;
+            for (let j = 0; j < palavra.resposta.length; j++) {
 
-    let todasCasas = document.querySelectorAll(".casa");
-    let todasPistas = document.querySelectorAll(".lista-pistas li");
-    let gruposPistas = document.querySelectorAll(".grupo-pistas");
+                let linha = palavra.linha;
+                let coluna = palavra.coluna;
 
-    for (let i = 0; i < todasCasas.length; i++) {
-        todasCasas[i].classList.remove("correta", "incorreta");
-    }
+                if (palavra.tipo == "horizontal") {
+                    coluna += j;
+                } else {
+                    linha += j;
+                }
 
-    for (let i = 0; i < todasPistas.length; i++) {
-        todasPistas[i].classList.remove("pista-correta", "pista-incorreta");
-    }
+                let posicao = linha + "-" + coluna;
 
-    for (let i = 0; i < palavras.length; i++) {
+                if (casas[posicao] == undefined) {
+                    casas[posicao] = {
+                        numero: 0
+                    };
+                }
 
-        let palavra = palavras[i];
-        let respostaDigitada = "";
-        let casasPalavra = [];
-
-        for (let j = 0; j < palavra.resposta.length; j++) {
-
-            let linha = palavra.linha;
-            let coluna = palavra.coluna;
-
-            if (palavra.tipo == "horizontal") {
-                coluna += j;
-            } else {
-                linha += j;
+                if (j == 0) {
+                    casas[posicao].numero = palavra.numero;
+                }
             }
-
-            let campo = document.getElementById("casa-" + linha + "-" + coluna);
-
-            respostaDigitada += campo.value.toUpperCase().trim();
-
-            casasPalavra.push(campo.parentElement);
         }
 
-        let grupo;
+        // CRIAR O TABULEIRO
 
-        if (palavra.tipo == "horizontal") {
-            grupo = gruposPistas[0];
-        } else {
-            grupo = gruposPistas[1];
+        let tabuleiro = document.getElementById("tabuleiro");
+
+        for (let linha = 1; linha <= 10; linha++) {
+
+            for (let coluna = 1; coluna <= 13; coluna++) {
+
+                let posicao = linha + "-" + coluna;
+                let div = document.createElement("div");
+
+                if (casas[posicao] != undefined) {
+
+                    div.className = "casa";
+
+                    if (casas[posicao].numero != 0) {
+
+                        let numero = document.createElement("span");
+
+                        numero.className = "numero";
+                        numero.innerHTML = casas[posicao].numero;
+
+                        div.appendChild(numero);
+                    }
+
+                    let input = document.createElement("input");
+
+                    input.id = "casa-" + posicao;
+                    input.maxLength = 1;
+                    input.autocomplete = "off";
+
+                    input.setAttribute(
+                        "aria-label",
+                        "Linha " + linha + ", coluna " + coluna
+                    );
+
+                    // SELECIONAR A PALAVRA AO CLICAR NA CASA
+
+                    input.addEventListener("click", function () {
+
+                        let opcoes = [];
+
+                        for (let i = 0; i < palavras.length; i++) {
+
+                            let indice = encontrarIndice(palavras[i], linha, coluna);
+
+                            if (indice != -1) {
+                                opcoes.push(i);
+                            }
+                        }
+
+                        if (opcoes.length > 0) {
+
+                            let escolhida = opcoes[0];
+
+                            if (opcoes.length > 1 && palavraAtiva == escolhida) {
+                                escolhida = opcoes[1];
+                            } else if (opcoes.length > 1 && palavraAtiva == opcoes[1]) {
+                                escolhida = opcoes[0];
+                            }
+
+                            selecionarPalavra(escolhida);
+                        }
+                    });
+
+                    // AVANÇAR AUTOMATICAMENTE AO DIGITAR
+
+                    input.addEventListener("input", function () {
+
+                        input.value = input.value
+                            .toUpperCase()
+                            .replace(/[^A-Z]/g, "");
+
+                        limparResultado();
+
+                        if (input.value != "") {
+
+                            let indiceAtual = -1;
+
+                            if (palavraAtiva != null) {
+                                indiceAtual = encontrarIndice(
+                                    palavras[palavraAtiva],
+                                    linha,
+                                    coluna
+                                );
+                            }
+
+                            if (indiceAtual == -1) {
+
+                                for (let i = 0; i < palavras.length; i++) {
+
+                                    let indice = encontrarIndice(
+                                        palavras[i],
+                                        linha,
+                                        coluna
+                                    );
+
+                                    if (indice != -1) {
+                                        selecionarPalavra(i);
+                                        indiceAtual = indice;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if (palavraAtiva != null) {
+
+                                let palavra = palavras[palavraAtiva];
+
+                                if (indiceAtual < palavra.resposta.length - 1) {
+
+                                    let proximaLinha = linha;
+                                    let proximaColuna = coluna;
+
+                                    if (palavra.tipo == "horizontal") {
+                                        proximaColuna++;
+                                    } else {
+                                        proximaLinha++;
+                                    }
+
+                                    let proximoCampo = document.getElementById(
+                                        "casa-" + proximaLinha + "-" + proximaColuna
+                                    );
+
+                                    if (proximoCampo != null) {
+                                        proximoCampo.focus();
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                    // VOLTAR UMA CASA COM BACKSPACE
+
+                    input.addEventListener("keydown", function (event) {
+
+                        if (event.key == "Backspace" && input.value == "") {
+
+                            if (palavraAtiva != null) {
+
+                                let palavra = palavras[palavraAtiva];
+
+                                let indice = encontrarIndice(
+                                    palavra,
+                                    linha,
+                                    coluna
+                                );
+
+                                if (indice > 0) {
+
+                                    let linhaAnterior = linha;
+                                    let colunaAnterior = coluna;
+
+                                    if (palavra.tipo == "horizontal") {
+                                        colunaAnterior--;
+                                    } else {
+                                        linhaAnterior--;
+                                    }
+
+                                    let campoAnterior = document.getElementById(
+                                        "casa-" + linhaAnterior + "-" + colunaAnterior
+                                    );
+
+                                    if (campoAnterior != null) {
+                                        campoAnterior.focus();
+                                        campoAnterior.value = "";
+                                        limparResultado();
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                    div.appendChild(input);
+
+                } else {
+
+                    div.className = "vazia";
+
+                }
+
+                tabuleiro.appendChild(div);
+            }
         }
 
-        let pista = grupo.querySelector('li[value="' + palavra.numero + '"]');
+        // IDENTIFICAR A POSIÇÃO DE UMA CASA NA PALAVRA
 
-        if (respostaDigitada == palavra.resposta) {
+        function encontrarIndice(palavra, linha, coluna) {
 
-            acertos++;
+            for (let i = 0; i < palavra.resposta.length; i++) {
 
-            pista.classList.add("pista-correta");
+                let linhaAtual = palavra.linha;
+                let colunaAtual = palavra.coluna;
 
-            for (let j = 0; j < casasPalavra.length; j++) {
+                if (palavra.tipo == "horizontal") {
+                    colunaAtual += i;
+                } else {
+                    linhaAtual += i;
+                }
 
-                if (!casasPalavra[j].classList.contains("incorreta")) {
-                    casasPalavra[j].classList.add("correta");
+                if (linhaAtual == linha && colunaAtual == coluna) {
+                    return i;
                 }
             }
 
-        } else {
+            return -1;
+        }
 
-            pista.classList.add("pista-incorreta");
+        // SELECIONAR UMA PALAVRA
 
-            for (let j = 0; j < casasPalavra.length; j++) {
-                casasPalavra[j].classList.remove("correta");
-                casasPalavra[j].classList.add("incorreta");
+        function selecionarPalavra(indicePalavra) {
+
+            palavraAtiva = indicePalavra;
+
+            let listaCasas = document.querySelectorAll(".casa");
+            let listaPistas = document.querySelectorAll(".lista-pistas li");
+
+            for (let i = 0; i < listaCasas.length; i++) {
+                listaCasas[i].classList.remove("selecionada");
+            }
+
+            for (let i = 0; i < listaPistas.length; i++) {
+                listaPistas[i].classList.remove("pista-selecionada");
+            }
+
+            let palavra = palavras[indicePalavra];
+
+            for (let i = 0; i < palavra.resposta.length; i++) {
+
+                let linha = palavra.linha;
+                let coluna = palavra.coluna;
+
+                if (palavra.tipo == "horizontal") {
+                    coluna += i;
+                } else {
+                    linha += i;
+                }
+
+                let campo = document.getElementById(
+                    "casa-" + linha + "-" + coluna
+                );
+
+                campo.parentElement.classList.add("selecionada");
+            }
+
+            let pista = document.getElementById(
+                "pista-" + palavra.tipo + "-" + palavra.numero
+            );
+
+            pista.classList.add("pista-selecionada");
+        }
+
+        // CLICAR EM UMA PISTA
+
+        for (let i = 0; i < palavras.length; i++) {
+
+            let palavra = palavras[i];
+
+            let pista = document.getElementById(
+                "pista-" + palavra.tipo + "-" + palavra.numero
+            );
+
+            pista.addEventListener("click", function () {
+
+                selecionarPalavra(i);
+
+                let campo = document.getElementById(
+                    "casa-" + palavra.linha + "-" + palavra.coluna
+                );
+
+                campo.focus();
+            });
+        }
+
+        // LIMPAR RESULTADOS ANTERIORES
+
+        function limparResultado() {
+
+            let listaCasas = document.querySelectorAll(".casa");
+            let listaPistas = document.querySelectorAll(".lista-pistas li");
+
+            for (let i = 0; i < listaCasas.length; i++) {
+                listaCasas[i].classList.remove("correta", "incorreta");
+            }
+
+            for (let i = 0; i < listaPistas.length; i++) {
+                listaPistas[i].classList.remove("pista-correta", "pista-incorreta");
+            }
+
+            document.getElementById("contador").innerHTML =
+                "Acertos: 0 de " + palavras.length + " palavras";
+
+            document.getElementById("mensagem").innerHTML = "";
+        }
+
+        // CONFERIR RESPOSTAS
+
+        function conferir() {
+
+            limparResultado();
+
+            let acertos = 0;
+            let resultadoCasas = {};
+
+            for (let i = 0; i < palavras.length; i++) {
+
+                let palavra = palavras[i];
+                let respostaDigitada = "";
+                let idsCasas = [];
+
+                for (let j = 0; j < palavra.resposta.length; j++) {
+
+                    let linha = palavra.linha;
+                    let coluna = palavra.coluna;
+
+                    if (palavra.tipo == "horizontal") {
+                        coluna += j;
+                    } else {
+                        linha += j;
+                    }
+
+                    let id = "casa-" + linha + "-" + coluna;
+                    let campo = document.getElementById(id);
+
+                    respostaDigitada += campo.value.toUpperCase().trim();
+
+                    idsCasas.push(id);
+                }
+
+                let pista = document.getElementById(
+                    "pista-" + palavra.tipo + "-" + palavra.numero
+                );
+
+                if (respostaDigitada == palavra.resposta) {
+
+                    acertos++;
+                    pista.classList.add("pista-correta");
+
+                    for (let j = 0; j < idsCasas.length; j++) {
+
+                        if (resultadoCasas[idsCasas[j]] != "incorreta") {
+                            resultadoCasas[idsCasas[j]] = "correta";
+                        }
+                    }
+
+                } else {
+
+                    pista.classList.add("pista-incorreta");
+
+                    for (let j = 0; j < idsCasas.length; j++) {
+                        resultadoCasas[idsCasas[j]] = "incorreta";
+                    }
+                }
+            }
+
+            for (let id in resultadoCasas) {
+
+                let campo = document.getElementById(id);
+
+                campo.parentElement.classList.add(resultadoCasas[id]);
+            }
+
+            document.getElementById("contador").innerHTML =
+                "Acertos: " + acertos + " de " + palavras.length + " palavras";
+
+            if (acertos == palavras.length) {
+
+                document.getElementById("mensagem").innerHTML =
+                    "Parabéns! Você completou a cruzadinha!";
+
+            } else {
+
+                document.getElementById("mensagem").innerHTML =
+                    "Confira as respostas incorretas e tente novamente!";
             }
         }
-    }
 
-    contador.innerHTML = "Acertos: " + acertos + " de " + palavras.length + " palavras";
+        // REINICIAR O JOGO
 
-    if (acertos == palavras.length) {
-        mensagem.innerHTML = "Parabéns! Você completou a cruzadinha!";
-    } else {
-        mensagem.innerHTML = "Confira as pistas destacadas e tente novamente!";
-    }
-}
+        function reiniciar() {
 
-function reiniciar() {
+            let campos = document.querySelectorAll(".casa input");
+            let listaCasas = document.querySelectorAll(".casa");
+            let listaPistas = document.querySelectorAll(".lista-pistas li");
 
-    let campos = document.querySelectorAll(".casa input");
-    let casas = document.querySelectorAll(".casa");
-    let pistas = document.querySelectorAll(".lista-pistas li");
+            for (let i = 0; i < campos.length; i++) {
+                campos[i].value = "";
+            }
 
-    for (let i = 0; i < campos.length; i++) {
-        campos[i].value = "";
-    }
+            for (let i = 0; i < listaCasas.length; i++) {
+                listaCasas[i].classList.remove(
+                    "correta",
+                    "incorreta",
+                    "selecionada"
+                );
+            }
 
-    for (let i = 0; i < casas.length; i++) {
-        casas[i].classList.remove("correta", "incorreta");
-    }
+            for (let i = 0; i < listaPistas.length; i++) {
+                listaPistas[i].classList.remove(
+                    "pista-correta",
+                    "pista-incorreta",
+                    "pista-selecionada"
+                );
+            }
 
-    for (let i = 0; i < pistas.length; i++) {
-        pistas[i].classList.remove("pista-correta", "pista-incorreta");
-    }
+            palavraAtiva = null;
 
-    contador.innerHTML = "Acertos: 0 de " + palavras.length + " palavras";
+            document.getElementById("contador").innerHTML =
+                "Acertos: 0 de " + palavras.length + " palavras";
 
-    mensagem.innerHTML = "";
-}
+            document.getElementById("mensagem").innerHTML = "";
+        }
 
-document.getElementById("btnConferir").addEventListener("click", conferir);
-document.getElementById("btnReiniciar").addEventListener("click", reiniciar);
+    </script>
 
+</body>
 
-</script>
+</html>
