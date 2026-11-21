@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -6,268 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cruzadinha de Arquitetura Computacional</title>
+    <link rel="stylesheet" href="style.css">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            color: #222;
-        }
-
-        header {
-            background-color: white;
-            text-align: center;
-            padding: 30px;
-            border-bottom: 3px solid #222;
-        }
-
-        header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-
-        header p {
-            color: #555;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        .instrucoes {
-            background-color: white;
-            border: 1px solid #ccc;
-            padding: 20px;
-            margin-bottom: 25px;
-        }
-
-        .instrucoes h2 {
-            margin-bottom: 10px;
-        }
-
-        .area-jogo {
-            display: flex;
-            gap: 25px;
-            align-items: flex-start;
-        }
-
-        .painel-tabuleiro {
-            background-color: white;
-            border: 1px solid #ccc;
-            padding: 25px;
-            flex: 2;
-            min-width: 0;
-        }
-
-        .painel-pistas {
-            background-color: white;
-            border: 1px solid #ccc;
-            padding: 25px;
-            flex: 1;
-        }
-
-        .painel-tabuleiro h2,
-        .painel-pistas h2 {
-            margin-bottom: 12px;
-        }
-
-        .rolagem-tabuleiro {
-            overflow-x: auto;
-            padding-bottom: 10px;
-        }
-
-        .tabuleiro {
-            display: grid;
-            grid-template-columns: repeat(13, 38px);
-            grid-template-rows: repeat(10, 38px);
-            width: max-content;
-            margin: 25px auto;
-            border: 1px solid #888;
-        }
-
-        .casa,
-        .vazia {
-            width: 38px;
-            height: 38px;
-            position: relative;
-            border: 1px solid #aaa;
-        }
-
-        .casa {
-            background-color: white;
-        }
-
-        .vazia {
-            background-color: #e8e8e8;
-        }
-
-        .casa input {
-            width: 100%;
-            height: 100%;
-            border: none;
-            outline: none;
-            background-color: transparent;
-            text-align: center;
-            font-size: 19px;
-            font-weight: bold;
-            text-transform: uppercase;
-            padding: 0;
-        }
-
-        .casa input:focus {
-            background-color: #dcecff;
-        }
-
-        .casa.selecionada {
-            background-color: #e8f1ff;
-        }
-
-        .numero {
-            position: absolute;
-            top: 1px;
-            left: 2px;
-            font-size: 9px;
-            font-weight: bold;
-            pointer-events: none;
-        }
-
-        .casa.correta {
-            background-color: #c8f0d0;
-        }
-
-        .casa.incorreta {
-            background-color: #ffcdd2;
-        }
-
-        .painel-acoes {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #ccc;
-        }
-
-        #contador {
-            font-weight: bold;
-            font-size: 17px;
-        }
-
-        .botoes {
-            display: flex;
-            gap: 10px;
-        }
-
-        button {
-            background-color: #eee;
-            color: #222;
-            border: 1px solid #999;
-            padding: 12px 20px;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #ddd;
-        }
-
-        #mensagem {
-            text-align: center;
-            margin-top: 20px;
-            font-weight: bold;
-        }
-
-        .grupo-pistas {
-            margin-top: 25px;
-        }
-
-        .grupo-pistas h3 {
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #ccc;
-        }
-
-        .lista-pistas {
-            padding-left: 25px;
-        }
-
-        .lista-pistas li {
-            margin-bottom: 15px;
-            line-height: 1.5;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        .lista-pistas li:hover {
-            text-decoration: underline;
-        }
-
-        .pista-selecionada {
-            background-color: #e8f1ff;
-        }
-
-        .pista-correta {
-            color: green;
-        }
-
-        .pista-correta::after {
-            content: " ✓ Correta";
-            font-weight: bold;
-        }
-
-        .pista-incorreta {
-            color: red;
-        }
-
-        .pista-incorreta::after {
-            content: " ✗ Incorreta";
-            font-weight: bold;
-        }
-
-        @media (max-width: 950px) {
-            .area-jogo {
-                flex-direction: column;
-            }
-
-            .painel-tabuleiro,
-            .painel-pistas {
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 0 10px;
-            }
-
-            .painel-tabuleiro,
-            .painel-pistas {
-                padding: 15px;
-            }
-
-            .painel-acoes {
-                flex-direction: column;
-            }
-
-            .botoes {
-                width: 100%;
-            }
-
-            button {
-                flex: 1;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -326,11 +65,13 @@
                     <ol class="lista-pistas">
 
                         <li value="4" id="pista-horizontal-4">
-                            Recurso que transfere dados entre dispositivos e memória sem ocupar o processador a cada byte.
+                            Recurso que transfere dados entre dispositivos e memória sem ocupar o processador a cada
+                            byte.
                         </li>
 
                         <li value="5" id="pista-horizontal-5">
-                            Pequenas memórias internas que armazenam valores temporários durante a execução das instruções.
+                            Pequenas memórias internas que armazenam valores temporários durante a execução das
+                            instruções.
                         </li>
 
                         <li value="7" id="pista-horizontal-7">
@@ -376,7 +117,8 @@
                         </li>
 
                         <li value="7" id="pista-vertical-7">
-                            Memória não volátil tradicionalmente destinada a informações de inicialização do equipamento.
+                            Memória não volátil tradicionalmente destinada a informações de inicialização do
+                            equipamento.
                         </li>
 
                         <li value="9" id="pista-vertical-9">
