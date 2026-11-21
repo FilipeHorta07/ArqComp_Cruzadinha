@@ -31,142 +31,100 @@ html {
 
 body {
     font-family: 'DM Sans', Arial, sans-serif;
+    color: var(--texto);
+    min-height: 100vh;
+
     background:
         radial-gradient(
-            circle at 10% 10%,
-            rgba(255, 56, 100, 0.08),
+            circle at 10% 15%,
+            rgba(255, 56, 100, 0.06),
             transparent 30%
         ),
         radial-gradient(
-            circle at 90% 45%,
+            circle at 90% 50%,
             rgba(75, 188, 255, 0.06),
             transparent 35%
         ),
         var(--fundo);
-
-    color: var(--texto);
-    min-height: 100vh;
 }
 
-/* CABEÇALHO */
+/* CABEÇALHO PINK FLOYD */
 
-header {
+.floyd-header {
     position: relative;
-    isolation: isolate;
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 25px;
+
+    min-height: 300px;
+    padding: 35px 7%;
+
+    text-align: left;
     overflow: hidden;
 
     background:
         radial-gradient(
-            circle at 75% 40%,
-            rgba(179, 140, 255, 0.13),
-            transparent 35%
+            circle at 75% 45%,
+            rgba(92, 83, 155, 0.15),
+            transparent 45%
         ),
         linear-gradient(
             135deg,
-            #121824,
-            #080b11 75%
+            #08090e,
+            #121725 60%,
+            #08090e
         );
 
-    padding: 75px 30px 85px;
-    text-align: center;
     border-bottom: 1px solid var(--borda);
 }
 
-header::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
+/* TEXTO DO CABEÇALHO */
 
-    width: 185px;
-    height: 165px;
-
-    top: 5%;
-    right: 12%;
-
-    background: linear-gradient(
-        135deg,
-        rgba(255,255,255,0.65),
-        rgba(255,255,255,0.03)
-    );
-
-    clip-path: polygon(
-        50% 0%,
-        100% 100%,
-        0% 100%
-    );
-
-    opacity: 0.22;
-    transform: rotate(-12deg);
+.floyd-conteudo {
+    position: relative;
+    z-index: 2;
 }
 
-header::after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-
-    top: 35%;
-    right: -50px;
-
-    width: 440px;
-    height: 115px;
-
-    background: linear-gradient(
-        to bottom,
-        #ff3864 0%,
-        #ff3864 16%,
-        #ff9f43 16%,
-        #ff9f43 32%,
-        #ffe66d 32%,
-        #ffe66d 48%,
-        #56e39f 48%,
-        #56e39f 64%,
-        #4bbcff 64%,
-        #4bbcff 80%,
-        #b38cff 80%,
-        #b38cff 100%
-    );
-
-    clip-path: polygon(
-        0% 44%,
-        100% 0%,
-        100% 100%,
-        0% 56%
-    );
-
-    opacity: 0.45;
-    filter: blur(1px);
-}
-
-header h1 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(32px, 4vw, 55px);
+.floyd-header .floyd-etiqueta {
+    color: #94a6c3;
+    font-size: 11px;
     font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
 
-    max-width: 950px;
-    margin: 0 auto 18px;
-
-    letter-spacing: -1.5px;
-    line-height: 1.15;
+.floyd-header .floyd-nome {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(35px, 4vw, 58px);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -2px;
 
     color: white;
-    text-shadow: 0 4px 25px rgba(0,0,0,0.4);
+    margin-bottom: 12px;
+    max-width: 700px;
+
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.12);
 }
 
-header p {
-    font-size: 17px;
-    color: var(--texto-secundario);
-    line-height: 1.7;
+.floyd-header .floyd-album {
+    color: #d5d9e5;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+
+    margin-bottom: 15px;
+    max-width: 520px;
 }
 
-header h1::after {
-    content: "";
-    display: block;
-
-    width: 180px;
+.floyd-linha {
+    width: 160px;
     height: 4px;
-
-    margin: 25px auto 0;
     border-radius: 10px;
+    margin-bottom: 18px;
 
     background: linear-gradient(
         90deg,
@@ -178,14 +136,64 @@ header h1::after {
         var(--roxo)
     );
 
-    box-shadow: 0 0 20px rgba(179,140,255,0.3);
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.15);
 }
 
-/* CONTEÚDO */
+.floyd-conteudo h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+
+    color: white;
+    margin-bottom: 8px;
+}
+
+.floyd-header .floyd-descricao {
+    color: #a8b0c4;
+    font-size: 13px;
+    line-height: 1.6;
+    max-width: 470px;
+}
+
+/* PRISMA */
+
+.floyd-arte {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.floyd-arte svg {
+    display: block;
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+
+    filter: drop-shadow(
+        0 0 25px rgba(255, 255, 255, 0.08)
+    );
+
+    transition: transform 0.4s ease;
+}
+
+.floyd-arte svg:hover {
+    transform: scale(1.05);
+}
+
+.floyd-arte p {
+    color: #788298;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-top: 0;
+}
+
+/* CONTEÚDO PRINCIPAL */
 
 .container {
     max-width: 1380px;
-    margin: 42px auto;
+    margin: 35px auto;
     padding: 0 25px;
 }
 
@@ -202,12 +210,12 @@ header h1::after {
     );
 
     border: 1px solid var(--borda);
-    border-radius: 16px;
+    border-radius: 15px;
 
-    padding: 28px 32px;
-    margin-bottom: 30px;
+    padding: 25px 30px;
+    margin-bottom: 28px;
 
-    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
 }
 
 .instrucoes::before {
@@ -233,7 +241,7 @@ header h1::after {
 .instrucoes h2 {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 23px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .instrucoes p {
@@ -242,15 +250,12 @@ header h1::after {
     line-height: 1.8;
 }
 
-/* ORGANIZAÇÃO DO JOGO */
+/* ÁREA DO JOGO */
 
 .area-jogo {
     display: grid;
-    grid-template-columns:
-        minmax(0, 1.8fr)
-        minmax(310px, 1fr);
-
-    gap: 28px;
+    grid-template-columns: minmax(0, 1.8fr) minmax(310px, 1fr);
+    gap: 25px;
     align-items: start;
 }
 
@@ -265,13 +270,21 @@ header h1::after {
     );
 
     border: 1px solid var(--borda);
-    border-radius: 18px;
+    border-radius: 16px;
 
-    padding: 30px;
+    padding: 28px;
 
     box-shadow:
-        0 20px 55px rgba(0,0,0,0.28),
-        inset 0 1px 0 rgba(255,255,255,0.04);
+        0 20px 55px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.painel-tabuleiro {
+    border-top: 3px solid var(--azul);
+}
+
+.painel-pistas {
+    border-top: 3px solid var(--rosa);
 }
 
 .painel-tabuleiro h2,
@@ -279,9 +292,9 @@ header h1::after {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 27px;
     font-weight: 700;
+    letter-spacing: -0.5px;
 
     margin-bottom: 12px;
-    letter-spacing: -0.5px;
 }
 
 .painel-tabuleiro > p {
@@ -293,24 +306,22 @@ header h1::after {
 /* ÁREA DO TABULEIRO */
 
 .rolagem-tabuleiro {
-    position: relative;
-
     width: 100%;
     overflow-x: auto;
 
     margin-top: 25px;
-    padding: 28px 12px;
+    padding: 25px 12px;
 
     background:
         radial-gradient(
             circle at center,
-            rgba(75,188,255,0.06),
+            rgba(75, 188, 255, 0.06),
             transparent 75%
         ),
         #0b1018;
 
     border: 1px solid #273044;
-    border-radius: 14px;
+    border-radius: 12px;
 
     scrollbar-width: thin;
     scrollbar-color: #46536a #151b26;
@@ -320,7 +331,6 @@ header h1::after {
 
 .tabuleiro {
     display: grid;
-
     grid-template-columns: repeat(13, var(--tamanho-casa));
     grid-template-rows: repeat(10, var(--tamanho-casa));
 
@@ -329,15 +339,14 @@ header h1::after {
 
     border: 2px solid #647087;
     border-radius: 4px;
-
     overflow: hidden;
 
     box-shadow:
-        0 15px 40px rgba(0,0,0,0.45),
-        0 0 28px rgba(75,188,255,0.08);
+        0 15px 40px rgba(0, 0, 0, 0.45),
+        0 0 28px rgba(75, 188, 255, 0.08);
 }
 
-/* CASAS */
+/* CASAS DA CRUZADINHA */
 
 .casa,
 .vazia {
@@ -350,19 +359,19 @@ header h1::after {
 }
 
 .vazia {
-    background: #171e2a;
+    background-color: #171e2a;
 }
 
 .casa {
-    background: #e9edf5;
+    background-color: #e9edf5;
+
     transition:
         background-color 0.2s ease,
         box-shadow 0.2s ease;
 }
 
 .casa:hover {
-    background: #d4e5ff;
-    z-index: 1;
+    background-color: #d4e5ff;
 }
 
 .casa input {
@@ -385,21 +394,20 @@ header h1::after {
     text-transform: uppercase;
 
     padding: 0;
-
     caret-color: var(--rosa);
 }
 
 .casa input:focus {
-    background: #ffffff;
+    background-color: #ffffff;
     box-shadow: inset 0 0 0 2px #358de7;
 }
 
 .casa:focus-within {
     z-index: 3;
-    box-shadow: 0 0 16px rgba(75,188,255,0.5);
+    box-shadow: 0 0 16px rgba(75, 188, 255, 0.5);
 }
 
-/* NUMERAÇÃO */
+/* NÚMEROS DAS CASAS */
 
 .numero {
     position: absolute;
@@ -407,10 +415,8 @@ header h1::after {
     top: 2px;
     left: 3px;
 
-    font-family: 'DM Sans', sans-serif;
     font-size: 9px;
     font-weight: 700;
-
     color: #526078;
 
     z-index: 2;
@@ -420,7 +426,7 @@ header h1::after {
 /* PALAVRA SELECIONADA */
 
 .casa.selecionada {
-    background: #d6e7ff;
+    background-color: #d6e7ff;
 }
 
 .casa.selecionada input {
@@ -431,10 +437,10 @@ header h1::after {
     color: #145ba7;
 }
 
-/* RESULTADOS */
+/* RESPOSTAS CORRETAS E INCORRETAS */
 
 .casa.correta {
-    background: #b8f4d1;
+    background-color: #b8f4d1;
     border-color: #42c98a;
 }
 
@@ -443,7 +449,7 @@ header h1::after {
 }
 
 .casa.incorreta {
-    background: #ffc2ce;
+    background-color: #ffc2ce;
     border-color: #ff5577;
 }
 
@@ -451,7 +457,7 @@ header h1::after {
     color: #911f39;
 }
 
-/* PLACAR E BOTÕES */
+/* CONTADOR E BOTÕES */
 
 .painel-acoes {
     display: flex;
@@ -461,7 +467,7 @@ header h1::after {
 
     gap: 18px;
 
-    margin-top: 28px;
+    margin-top: 25px;
     padding-top: 25px;
 
     border-top: 1px solid var(--borda);
@@ -471,7 +477,7 @@ header h1::after {
     display: inline-flex;
     align-items: center;
 
-    background: #20283a;
+    background-color: #20283a;
     border: 1px solid #39445a;
     border-radius: 10px;
 
@@ -506,8 +512,10 @@ button {
         box-shadow 0.25s ease;
 }
 
+/* BOTÃO CONFERIR */
+
 .botoes button:first-child {
-    color: #ffffff;
+    color: white;
 
     background: linear-gradient(
         120deg,
@@ -515,27 +523,29 @@ button {
         #c239b8
     );
 
-    box-shadow: 0 6px 20px rgba(245,46,103,0.18);
+    box-shadow: 0 6px 20px rgba(245, 46, 103, 0.18);
 }
 
 .botoes button:first-child:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 28px rgba(245,46,103,0.35);
+    box-shadow: 0 10px 28px rgba(245, 46, 103, 0.35);
 }
 
+/* BOTÃO REINICIAR */
+
 .botoes button:last-child {
-    background: #232b3a;
+    background-color: #232b3a;
     color: #e6eaf3;
     border-color: #455067;
 }
 
 .botoes button:last-child:hover {
-    background: #303b50;
+    background-color: #303b50;
     transform: translateY(-3px);
 }
 
 button:active {
-    transform: translateY(0) scale(0.97);
+    transform: scale(0.97);
 }
 
 button:focus-visible {
@@ -543,7 +553,7 @@ button:focus-visible {
     outline-offset: 3px;
 }
 
-/* MENSAGEM */
+/* MENSAGENS */
 
 #mensagem {
     margin-top: 20px;
@@ -552,37 +562,10 @@ button:focus-visible {
     font-size: 15px;
     font-weight: 600;
     text-align: center;
-
     line-height: 1.6;
 }
 
-/* PISTAS */
-
-.painel-pistas {
-    position: relative;
-    overflow: hidden;
-}
-
-.painel-pistas::before {
-    content: "";
-    position: absolute;
-
-    top: 0;
-    left: 0;
-    right: 0;
-
-    height: 4px;
-
-    background: linear-gradient(
-        90deg,
-        var(--rosa),
-        var(--laranja),
-        var(--amarelo),
-        var(--verde),
-        var(--azul),
-        var(--roxo)
-    );
-}
+/* PAINEL DE PISTAS */
 
 .grupo-pistas {
     margin-top: 30px;
@@ -605,6 +588,8 @@ button:focus-visible {
 .grupo-pistas:last-of-type h3 {
     color: var(--rosa);
 }
+
+/* LISTA DE PISTAS */
 
 .lista-pistas {
     padding-left: 26px;
@@ -636,7 +621,7 @@ button:focus-visible {
 }
 
 .lista-pistas li:hover {
-    background: #242e40;
+    background-color: #242e40;
     color: white;
     transform: translateX(4px);
 }
@@ -644,7 +629,7 @@ button:focus-visible {
 /* PISTA SELECIONADA */
 
 .lista-pistas li.pista-selecionada {
-    background: rgba(75,188,255,0.13);
+    background-color: rgba(75, 188, 255, 0.13);
     color: white;
 
     box-shadow: inset 3px 0 0 var(--azul);
@@ -654,7 +639,7 @@ button:focus-visible {
     color: var(--azul);
 }
 
-/* PISTAS CORRETAS E INCORRETAS */
+/* PISTAS CORRETAS */
 
 .lista-pistas li.pista-correta {
     color: #7cf2af;
@@ -666,6 +651,8 @@ button:focus-visible {
     font-weight: 700;
     margin-top: 5px;
 }
+
+/* PISTAS INCORRETAS */
 
 .lista-pistas li.pista-incorreta {
     color: #ff8da5;
@@ -686,21 +673,22 @@ button:focus-visible {
 }
 
 ::-webkit-scrollbar-track {
-    background: #121721;
+    background-color: #121721;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #414c63;
+    background-color: #414c63;
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #62708c;
+    background-color: #62708c;
 }
 
-/* RESPONSIVIDADE */
+/* RESPONSIVIDADE PARA TABLETS */
 
 @media (max-width: 1050px) {
+
     .area-jogo {
         grid-template-columns: 1fr;
     }
@@ -711,42 +699,81 @@ button:focus-visible {
     }
 }
 
+@media (max-width: 900px) {
+
+    .floyd-header {
+        grid-template-columns: 1fr;
+        text-align: center;
+
+        padding: 35px 20px;
+        gap: 15px;
+    }
+
+    .floyd-header .floyd-nome {
+        font-size: clamp(32px, 6vw, 48px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .floyd-header .floyd-descricao,
+    .floyd-header .floyd-album {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .floyd-linha {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .floyd-arte svg {
+        max-width: 300px;
+    }
+}
+
+/* RESPONSIVIDADE PARA CELULARES */
+
 @media (max-width: 650px) {
+
     :root {
         --tamanho-casa: 34px;
     }
 
-    header {
-        padding: 50px 20px 65px;
+    .floyd-header {
+        padding: 30px 18px;
     }
 
-    header h1 {
-        font-size: 32px;
+    .floyd-header .floyd-nome {
+        font-size: clamp(29px, 8vw, 40px);
+        letter-spacing: -1px;
     }
 
-    header p {
-        font-size: 14px;
+    .floyd-header .floyd-album {
+        font-size: 12px;
     }
 
-    header::before {
-        right: -45px;
-        opacity: 0.1;
+    .floyd-header .floyd-etiqueta {
+        font-size: 10px;
+        letter-spacing: 1.5px;
     }
 
-    header::after {
-        right: -180px;
-        opacity: 0.2;
+    .floyd-conteudo h2 {
+        font-size: 18px;
+    }
+
+    .floyd-arte svg {
+        max-width: 260px;
     }
 
     .container {
         padding: 0 12px;
-        margin: 22px auto;
+        margin: 20px auto;
     }
 
     .instrucoes,
     .painel-tabuleiro,
     .painel-pistas {
-        padding: 20px;
+        padding: 18px;
         border-radius: 12px;
     }
 
@@ -776,11 +803,11 @@ button:focus-visible {
 /* ACESSIBILIDADE */
 
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
         transition: none !important;
-        animation: none !important;
         scroll-behavior: auto !important;
     }
 }
