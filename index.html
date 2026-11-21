@@ -15,7 +15,7 @@
         <div class="conteudo-cabecalho">
             <p class="categoria">Arquitetura Computacional</p>
             <h1>Cruzadinha da CPU</h1>
-            <p>Leia as pistas, preencha o tabuleiro e teste seus conhecimentos.</p>
+            <p>Teste seus conhecimentos sobre os componentes de um computador.</p>
         </div>
     </header>
 
@@ -23,7 +23,11 @@
 
         <section class="instrucoes">
             <h2>Como jogar</h2>
-            <p>Digite uma letra por casa. Use as pistas horizontais e verticais para descobrir as 12 palavras.</p>
+            <p>
+                Leia as pistas e descubra as palavras.
+                Digite uma letra em cada casa e clique em Conferir
+                para verificar suas respostas.
+            </p>
         </section>
 
         <section class="area-jogo">
@@ -32,121 +36,73 @@
 
                 <div class="titulo-secao">
                     <h2>Tabuleiro</h2>
-                    <p>As casas com números indicam o início das palavras.</p>
+                    <p>Preencha as casas para completar a cruzadinha.</p>
                 </div>
 
                 <div class="rolagem-tabuleiro">
+
                     <div class="tabuleiro">
 
-                        <div class="casa" style="grid-row: 1; grid-column: 1;">
+                        <!-- LINHA 1 -->
+
+                        <div class="casa" style="grid-row: 1; grid-column: 14;">
                             <span class="numero">1</span>
-                            <input id="casa-1-1" maxlength="1">
+                            <input id="casa-1-14" maxlength="1">
                         </div>
 
-                        <div class="casa" style="grid-row: 1; grid-column: 12;">
-                            <span class="numero">2</span>
-                            <input id="casa-1-12" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 2; grid-column: 1;">
-                            <span class="numero">3</span>
-                            <input id="casa-2-1" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 2; grid-column: 2;">
-                            <input id="casa-2-2" maxlength="1">
-                        </div>
+                        <!-- LINHA 2 -->
 
                         <div class="casa" style="grid-row: 2; grid-column: 3;">
-                            <span class="numero">4</span>
+                            <span class="numero">2</span>
                             <input id="casa-2-3" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 2; grid-column: 4;">
-                            <input id="casa-2-4" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 2; grid-column: 5;">
-                            <input id="casa-2-5" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 2; grid-column: 6;">
-                            <input id="casa-2-6" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 2; grid-column: 7;">
-                            <input id="casa-2-7" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 2; grid-column: 8;">
-                            <input id="casa-2-8" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 2; grid-column: 9;">
-                            <input id="casa-2-9" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 2; grid-column: 10;">
-                            <input id="casa-2-10" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 2; grid-column: 11;">
-                            <input id="casa-2-11" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 2; grid-column: 12;">
-                            <input id="casa-2-12" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 2; grid-column: 13;">
-                            <input id="casa-2-13" maxlength="1">
                         </div>
 
                         <div class="casa" style="grid-row: 2; grid-column: 14;">
                             <input id="casa-2-14" maxlength="1">
                         </div>
 
-                        <div class="casa" style="grid-row: 2; grid-column: 15;">
-                            <input id="casa-2-15" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 2; grid-column: 16;">
-                            <input id="casa-2-16" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 3; grid-column: 1;">
-                            <input id="casa-3-1" maxlength="1">
-                        </div>
+                        <!-- LINHA 3 -->
 
                         <div class="casa" style="grid-row: 3; grid-column: 3;">
                             <input id="casa-3-3" maxlength="1">
                         </div>
 
+                        <div class="casa" style="grid-row: 3; grid-column: 6;">
+                            <span class="numero">3</span>
+                            <input id="casa-3-6" maxlength="1">
+                        </div>
+
+                        <div class="casa" style="grid-row: 3; grid-column: 9;">
+                            <span class="numero">4</span>
+                            <input id="casa-3-9" maxlength="1">
+                        </div>
+
                         <div class="casa" style="grid-row: 3; grid-column: 12;">
+                            <span class="numero">5</span>
                             <input id="casa-3-12" maxlength="1">
                         </div>
 
-                        <div class="casa" style="grid-row: 3; grid-column: 19;">
-                            <span class="numero">5</span>
-                            <input id="casa-3-19" maxlength="1">
+                        <div class="casa" style="grid-row: 3; grid-column: 14;">
+                            <input id="casa-3-14" maxlength="1">
+                        </div>
+
+                        <!-- LINHA 4 -->
+
+                        <div class="casa" style="grid-row: 4; grid-column: 2;">
+                            <span class="numero">6</span>
+                            <input id="casa-4-2" maxlength="1">
                         </div>
 
                         <div class="casa" style="grid-row: 4; grid-column: 3;">
-                            <span class="numero">6</span>
                             <input id="casa-4-3" maxlength="1">
                         </div>
 
-                        <div class="casa" style="grid-row: 4; grid-column: 4;">
-                            <input id="casa-4-4" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 4; grid-column: 5;">
-                            <span class="numero">7</span>
-                            <input id="casa-4-5" maxlength="1">
+                        <div class="casa" style="grid-row: 4; grid-column: 6;">
+                            <input id="casa-4-6" maxlength="1">
                         </div>
 
                         <div class="casa" style="grid-row: 4; grid-column: 8;">
-                            <span class="numero">8</span>
+                            <span class="numero">7</span>
                             <input id="casa-4-8" maxlength="1">
                         </div>
 
@@ -158,155 +114,172 @@
                             <input id="casa-4-10" maxlength="1">
                         </div>
 
-                        <div class="casa" style="grid-row: 4; grid-column: 11;">
-                            <input id="casa-4-11" maxlength="1">
-                        </div>
-
                         <div class="casa" style="grid-row: 4; grid-column: 12;">
                             <input id="casa-4-12" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 4; grid-column: 13;">
-                            <input id="casa-4-13" maxlength="1">
                         </div>
 
                         <div class="casa" style="grid-row: 4; grid-column: 14;">
                             <input id="casa-4-14" maxlength="1">
                         </div>
 
-                        <div class="casa" style="grid-row: 4; grid-column: 15;">
-                            <input id="casa-4-15" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 4; grid-column: 16;">
-                            <span class="numero">9</span>
-                            <input id="casa-4-16" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 4; grid-column: 17;">
-                            <input id="casa-4-17" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 4; grid-column: 18;">
-                            <input id="casa-4-18" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 4; grid-column: 19;">
-                            <input id="casa-4-19" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 4; grid-column: 20;">
-                            <input id="casa-4-20" maxlength="1">
-                        </div>
+                        <!-- LINHA 5 -->
 
                         <div class="casa" style="grid-row: 5; grid-column: 3;">
                             <input id="casa-5-3" maxlength="1">
                         </div>
 
-                        <div class="casa" style="grid-row: 5; grid-column: 5;">
-                            <input id="casa-5-5" maxlength="1">
+                        <div class="casa" style="grid-row: 5; grid-column: 6;">
+                            <input id="casa-5-6" maxlength="1">
                         </div>
 
-                        <div class="casa" style="grid-row: 5; grid-column: 8;">
-                            <input id="casa-5-8" maxlength="1">
+                        <div class="casa" style="grid-row: 5; grid-column: 9;">
+                            <input id="casa-5-9" maxlength="1">
                         </div>
 
                         <div class="casa" style="grid-row: 5; grid-column: 12;">
                             <input id="casa-5-12" maxlength="1">
                         </div>
 
-                        <div class="casa" style="grid-row: 5; grid-column: 16;">
-                            <input id="casa-5-16" maxlength="1">
+                        <div class="casa" style="grid-row: 5; grid-column: 14;">
+                            <input id="casa-5-14" maxlength="1">
                         </div>
 
-                        <div class="casa" style="grid-row: 5; grid-column: 19;">
-                            <input id="casa-5-19" maxlength="1">
+                        <!-- LINHA 6 -->
+
+                        <div class="casa" style="grid-row: 6; grid-column: 2;">
+                            <span class="numero">8</span>
+                            <input id="casa-6-2" maxlength="1">
                         </div>
 
                         <div class="casa" style="grid-row: 6; grid-column: 3;">
                             <input id="casa-6-3" maxlength="1">
                         </div>
 
+                        <div class="casa" style="grid-row: 6; grid-column: 4;">
+                            <input id="casa-6-4" maxlength="1">
+                        </div>
+
+                        <div class="casa" style="grid-row: 6; grid-column: 5;">
+                            <input id="casa-6-5" maxlength="1">
+                        </div>
+
+                        <div class="casa" style="grid-row: 6; grid-column: 6;">
+                            <input id="casa-6-6" maxlength="1">
+                        </div>
+
+                        <div class="casa" style="grid-row: 6; grid-column: 7;">
+                            <input id="casa-6-7" maxlength="1">
+                        </div>
+
                         <div class="casa" style="grid-row: 6; grid-column: 8;">
                             <input id="casa-6-8" maxlength="1">
                         </div>
 
-                        <div class="casa" style="grid-row: 6; grid-column: 16;">
-                            <input id="casa-6-16" maxlength="1">
+                        <div class="casa" style="grid-row: 6; grid-column: 9;">
+                            <input id="casa-6-9" maxlength="1">
                         </div>
 
-                        <div class="casa" style="grid-row: 6; grid-column: 19;">
-                            <input id="casa-6-19" maxlength="1">
+                        <div class="casa" style="grid-row: 6; grid-column: 10;">
+                            <input id="casa-6-10" maxlength="1">
+                        </div>
+
+                        <div class="casa" style="grid-row: 6; grid-column: 11;">
+                            <input id="casa-6-11" maxlength="1">
+                        </div>
+
+                        <div class="casa" style="grid-row: 6; grid-column: 12;">
+                            <input id="casa-6-12" maxlength="1">
+                        </div>
+
+                        <div class="casa" style="grid-row: 6; grid-column: 13;">
+                            <input id="casa-6-13" maxlength="1">
+                        </div>
+
+                        <div class="casa" style="grid-row: 6; grid-column: 14;">
+                            <input id="casa-6-14" maxlength="1">
+                        </div>
+
+                        <!-- LINHA 7 -->
+
+                        <div class="casa" style="grid-row: 7; grid-column: 2;">
+                            <input id="casa-7-2" maxlength="1">
+                        </div>
+
+                        <div class="casa" style="grid-row: 7; grid-column: 6;">
+                            <input id="casa-7-6" maxlength="1">
+                        </div>
+
+                        <div class="casa" style="grid-row: 7; grid-column: 9;">
+                            <input id="casa-7-9" maxlength="1">
+                        </div>
+
+                        <div class="casa" style="grid-row: 7; grid-column: 12;">
+                            <input id="casa-7-12" maxlength="1">
                         </div>
 
                         <div class="casa" style="grid-row: 7; grid-column: 14;">
-                            <span class="numero">10</span>
                             <input id="casa-7-14" maxlength="1">
                         </div>
 
-                        <div class="casa" style="grid-row: 7; grid-column: 15;">
-                            <input id="casa-7-15" maxlength="1">
+                        <!-- LINHA 8 -->
+
+                        <div class="casa" style="grid-row: 8; grid-column: 1;">
+                            <span class="numero">9</span>
+                            <input id="casa-8-1" maxlength="1">
                         </div>
 
-                        <div class="casa" style="grid-row: 7; grid-column: 16;">
-                            <input id="casa-7-16" maxlength="1">
+                        <div class="casa" style="grid-row: 8; grid-column: 2;">
+                            <input id="casa-8-2" maxlength="1">
                         </div>
 
-                        <div class="casa" style="grid-row: 7; grid-column: 19;">
-                            <input id="casa-7-19" maxlength="1">
+                        <div class="casa" style="grid-row: 8; grid-column: 3;">
+                            <input id="casa-8-3" maxlength="1">
                         </div>
 
-                        <div class="casa" style="grid-row: 8; grid-column: 16;">
-                            <input id="casa-8-16" maxlength="1">
+                        <div class="casa" style="grid-row: 8; grid-column: 7;">
+                            <span class="numero">10</span>
+                            <input id="casa-8-7" maxlength="1">
                         </div>
 
-                        <div class="casa" style="grid-row: 8; grid-column: 19;">
-                            <input id="casa-8-19" maxlength="1">
+                        <div class="casa" style="grid-row: 8; grid-column: 8;">
+                            <input id="casa-8-8" maxlength="1">
+                        </div>
+
+                        <div class="casa" style="grid-row: 8; grid-column: 9;">
+                            <input id="casa-8-9" maxlength="1">
+                        </div>
+
+                        <div class="casa" style="grid-row: 8; grid-column: 12;">
+                            <input id="casa-8-12" maxlength="1">
+                        </div>
+
+                        <div class="casa" style="grid-row: 8; grid-column: 14;">
+                            <input id="casa-8-14" maxlength="1">
+                        </div>
+
+                        <!-- LINHA 9 -->
+
+                        <div class="casa" style="grid-row: 9; grid-column: 9;">
+                            <input id="casa-9-9" maxlength="1">
+                        </div>
+
+                        <div class="casa" style="grid-row: 9; grid-column: 14;">
+                            <span class="numero">11</span>
+                            <input id="casa-9-14" maxlength="1">
+                        </div>
+
+                        <div class="casa" style="grid-row: 9; grid-column: 15;">
+                            <input id="casa-9-15" maxlength="1">
                         </div>
 
                         <div class="casa" style="grid-row: 9; grid-column: 16;">
                             <input id="casa-9-16" maxlength="1">
                         </div>
 
-                        <div class="casa" style="grid-row: 10; grid-column: 10;">
-                            <span class="numero">11</span>
-                            <input id="casa-10-10" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 10; grid-column: 11;">
-                            <input id="casa-10-11" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 10; grid-column: 12;">
-                            <input id="casa-10-12" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 10; grid-column: 13;">
-                            <input id="casa-10-13" maxlength="1">
-                        </div>
+                        <!-- LINHA 10 -->
 
                         <div class="casa" style="grid-row: 10; grid-column: 14;">
                             <input id="casa-10-14" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 10; grid-column: 15;">
-                            <input id="casa-10-15" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 10; grid-column: 16;">
-                            <input id="casa-10-16" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 10; grid-column: 17;">
-                            <input id="casa-10-17" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 10; grid-column: 18;">
-                            <input id="casa-10-18" maxlength="1">
-                        </div>
-
-                        <div class="casa" style="grid-row: 10; grid-column: 19;">
-                            <input id="casa-10-19" maxlength="1">
                         </div>
 
                     </div>
@@ -327,6 +300,8 @@
 
             </div>
 
+            <!-- PISTAS -->
+
             <div class="painel-pistas">
 
                 <h2>Pistas</h2>
@@ -336,25 +311,31 @@
                     <h3>Horizontais</h3>
 
                     <ol class="lista-pistas">
-                        <li value="3">
-                            Chip que reúne processamento, memória e conexões para sensores em um único componente.
-                        </li>
 
                         <li value="6">
-                            Componente responsável por buscar e executar as instruções do programa.
+                            Parte do processador que interpreta instruções e emite comandos.
+                        </li>
+
+                        <li value="7">
+                            Memória volátil onde ficam variáveis e programas em execução.
                         </li>
 
                         <li value="8">
-                            Pequenas memórias internas que guardam dados temporários durante o processamento.
+                            Pequenas memórias internas do processador que guardam valores usados no momento.
+                        </li>
+
+                        <li value="9">
+                            Recurso que transfere informações entre dispositivos e memória sem copiar cada byte pela CPU.
                         </li>
 
                         <li value="10">
-                            Parte do processador responsável pelos cálculos e operações lógicas.
+                            Componente que busca e executa as instruções de um programa.
                         </li>
 
                         <li value="11">
-                            Conjunto de fios que indica qual posição será acessada na memória.
+                            Parte do processador responsável pelas contas e operações lógicas.
                         </li>
+
                     </ol>
 
                 </div>
@@ -366,31 +347,27 @@
                     <ol class="lista-pistas">
 
                         <li value="1">
-                            Mecanismo que transfere dados entre dispositivos e memória sem exigir cópia pela CPU.
+                            Conjunto de linhas que indica qual posição da memória será acessada.
                         </li>
 
                         <li value="2">
-                            Memória regravável que mantém o programa mesmo quando falta energia.
+                            Memória pequena e rápida que guarda cópias de informações utilizadas recentemente.
+                        </li>
+
+                        <li value="3">
+                            Tecnologia não volátil e regravável usada para guardar programas no Arduino.
                         </li>
 
                         <li value="4">
-                            Memória rápida que conserva cópias de informações usadas recentemente pelo processador.
+                            Conjunto de linhas que transporta valores entre processador, memória e periféricos.
                         </li>
 
                         <li value="5">
-                            Memória do Arduino usada para preservar pequenas configurações mesmo após desligar.
-                        </li>
-
-                        <li value="7">
-                            Parte do processador que interpreta instruções e coordena as demais unidades.
+                            Memória regravável que preserva pequenas configurações mesmo após desligar o dispositivo.
                         </li>
 
                         <li value="8">
-                            Memória temporária que perde as informações quando a energia é desligada.
-                        </li>
-
-                        <li value="9">
-                            Grupo de fios que transporta valores entre processador, memória e periféricos.
+                            Tipo de memória não volátil tradicionalmente associada a instruções de inicialização.
                         </li>
 
                     </ol>
