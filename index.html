@@ -383,3 +383,133 @@
 </body>
 
 </html>
+<script>
+
+
+let palavras = [
+    { numero: 6, tipo: "horizontal", resposta: "UC", linha: 4, coluna: 2 },
+    { numero: 7, tipo: "horizontal", resposta: "RAM", linha: 4, coluna: 8 },
+    { numero: 8, tipo: "horizontal", resposta: "REGISTRADORES", linha: 6, coluna: 2 },
+    { numero: 9, tipo: "horizontal", resposta: "DMA", linha: 8, coluna: 1 },
+    { numero: 10, tipo: "horizontal", resposta: "CPU", linha: 8, coluna: 7 },
+    { numero: 11, tipo: "horizontal", resposta: "ULA", linha: 9, coluna: 14 },
+
+    { numero: 1, tipo: "vertical", resposta: "ADDRESSBUS", linha: 1, coluna: 14 },
+    { numero: 2, tipo: "vertical", resposta: "CACHE", linha: 2, coluna: 3 },
+    { numero: 3, tipo: "vertical", resposta: "FLASH", linha: 3, coluna: 6 },
+    { numero: 4, tipo: "vertical", resposta: "DATABUS", linha: 3, coluna: 9 },
+    { numero: 5, tipo: "vertical", resposta: "EEPROM", linha: 3, coluna: 12 },
+    { numero: 8, tipo: "vertical", resposta: "ROM", linha: 6, coluna: 2 }
+];
+
+function conferir() {
+
+    let acertos = 0;
+
+    let todasCasas = document.querySelectorAll(".casa");
+    let todasPistas = document.querySelectorAll(".lista-pistas li");
+    let gruposPistas = document.querySelectorAll(".grupo-pistas");
+
+    for (let i = 0; i < todasCasas.length; i++) {
+        todasCasas[i].classList.remove("correta", "incorreta");
+    }
+
+    for (let i = 0; i < todasPistas.length; i++) {
+        todasPistas[i].classList.remove("pista-correta", "pista-incorreta");
+    }
+
+    for (let i = 0; i < palavras.length; i++) {
+
+        let palavra = palavras[i];
+        let respostaDigitada = "";
+        let casasPalavra = [];
+
+        for (let j = 0; j < palavra.resposta.length; j++) {
+
+            let linha = palavra.linha;
+            let coluna = palavra.coluna;
+
+            if (palavra.tipo == "horizontal") {
+                coluna += j;
+            } else {
+                linha += j;
+            }
+
+            let campo = document.getElementById("casa-" + linha + "-" + coluna);
+
+            respostaDigitada += campo.value.toUpperCase().trim();
+
+            casasPalavra.push(campo.parentElement);
+        }
+
+        let grupo;
+
+        if (palavra.tipo == "horizontal") {
+            grupo = gruposPistas[0];
+        } else {
+            grupo = gruposPistas[1];
+        }
+
+        let pista = grupo.querySelector('li[value="' + palavra.numero + '"]');
+
+        if (respostaDigitada == palavra.resposta) {
+
+            acertos++;
+
+            pista.classList.add("pista-correta");
+
+            for (let j = 0; j < casasPalavra.length; j++) {
+
+                if (!casasPalavra[j].classList.contains("incorreta")) {
+                    casasPalavra[j].classList.add("correta");
+                }
+            }
+
+        } else {
+
+            pista.classList.add("pista-incorreta");
+
+            for (let j = 0; j < casasPalavra.length; j++) {
+                casasPalavra[j].classList.remove("correta");
+                casasPalavra[j].classList.add("incorreta");
+            }
+        }
+    }
+
+    contador.innerHTML = "Acertos: " + acertos + " de " + palavras.length + " palavras";
+
+    if (acertos == palavras.length) {
+        mensagem.innerHTML = "Parabéns! Você completou a cruzadinha!";
+    } else {
+        mensagem.innerHTML = "Confira as pistas destacadas e tente novamente!";
+    }
+}
+
+function reiniciar() {
+
+    let campos = document.querySelectorAll(".casa input");
+    let casas = document.querySelectorAll(".casa");
+    let pistas = document.querySelectorAll(".lista-pistas li");
+
+    for (let i = 0; i < campos.length; i++) {
+        campos[i].value = "";
+    }
+
+    for (let i = 0; i < casas.length; i++) {
+        casas[i].classList.remove("correta", "incorreta");
+    }
+
+    for (let i = 0; i < pistas.length; i++) {
+        pistas[i].classList.remove("pista-correta", "pista-incorreta");
+    }
+
+    contador.innerHTML = "Acertos: 0 de " + palavras.length + " palavras";
+
+    mensagem.innerHTML = "";
+}
+
+document.getElementById("btnConferir").addEventListener("click", conferir);
+document.getElementById("btnReiniciar").addEventListener("click", reiniciar);
+
+
+</script>
